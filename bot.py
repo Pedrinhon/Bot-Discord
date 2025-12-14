@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from bot_logic import pass_gen
 from bot_emoji import emo_send
+from bot_api import dog_image
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -52,6 +53,11 @@ async def id(ctx, member: discord.Member = None):
 async def joined(ctx, member: discord.Member):
     """Says when a member joined."""
     await ctx.send(f'{member.name} joined {discord.utils.format_dt(member.joined_at)}')
+
+@bot.command('dog')
+async def dog(ctx):
+    image_url = dog_image()
+    await ctx.send(image_url)
 
     
 
